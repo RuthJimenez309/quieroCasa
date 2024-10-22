@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcular Coutas</title>
+</head>
+
+<style>
+  .calculator {
+    background-color: #f9f9f9;
+    padding: 20px;
+    width: 400px;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #2c6b6b;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-size: 16px;
+}
+
+input[type="number"],
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+input[type="submit"] {
+    background-color: #e63946;
+    color: white;
+    cursor: pointer;
+}
+
+.result {
+    text-align: center;
+    padding: 10px;
+    background-color: #e9f5f5;
+    border-radius: 10px;
+}
+
+.result h3 {
+    color: #e63946;
+    font-size: 24px;
+}
+
+
+</style>
+<body>
+<section  class="mortgage-calculator mb-lg-4 mob-border">
+    <div class="bg-white py-4 px-md-4 px-3 ">
+            <div class="d-sm-flex justify-content-between pb-4 mb-2">
+                <h2 class="font-weight-bold h4 mb-3">CALCULADORA DE CUOTAS</h2>
+                <div class="d-flex align-items-baseline"> <div id="bankLogoBlock" 
+                    style="display: block;"><img 
+                    src="https://dy6ryljkojinj.cloudfront.net/public/uploads/banks/Screenshot 2024-01-02 at 20-45-57 TERRENO EN VENTA EN LA CUMBRE 2687.92 VRS2__1804764561.png"
+                     alt="BANHPROVI" title="BANHPROVI"></div> <div class="ml-3"> <form name="formBankSelect" id="formBankSelect" method="post" action="">
+                        <input type="hidden" id="formBankSelect_errors" name="formBankSelect_errors" value="1"> 
+                        <input type="hidden" name="propertyName" id="propertyName" value="VENTA DE NUEVA Y MODERNA CASA EN VILLA FLORENCIA">
+                         <input type="hidden" name="propertyMortgage" id="propertyMortgage" value="No"> <input type="hidden" name="emiUnit" id="emiUnit" value="3 Habitaciones">
+                          <input type="hidden" name="emiType" id="emiType" value="Property"> <div class="emi-banks"> <div class="custom-selectbox-style1 d-inline-block">
+                             <input type="hidden" name="propPrice_hid" value="126719.00" id="propPrice_hid"> <select class="form-control" id="emiBank" name="emiBank">
+                                <option value="24">BANHPROVI</option><option value="25">PROPIOS</option>
+                                <option value="26">RAP</option></select> </div> </div> </form> 
+                                <input type="hidden" name="currencySymbol" id="currencySymbol" value="$">
+                             </div> </div>
+                             <div class="col-md-6 col-12 mb-md-0 mb-4"> <input type="hidden" name="bankLogo" id="bankLogo" value="https://dy6ryljkojinj.cloudfront.net/public/uploads/banks/Screenshot 2024-01-02 at 20-45-57 TERRENO EN VENTA EN LA CUMBRE 2687.92 VRS2__1804764561.png"> <input type="hidden" name="bankNames" id="bankNames" value="BANHPROVI"> <ul class="list-unstyled m-0"> <li class="mb-3"> <p class="font-normal line-height-default m-0">
+												
+                                Pago para 3 Habitaciones en VENTA DE NUEVA Y MODERNA CASA EN VILLA FLORENCIA 	
+                            
+                                                </p> </li> <li class="mb-3 pb-3"> <div class="emi-title text-muted line-height-default">Precio:</div> <div class="font-weight-bold"> <label id="lblPropertyPrice" for="propertyPrice">$ 126.719</label> <input type="hidden" id="mortgagePropertyPrice" value="126719.00"> <input class="form-control py-0" oninput="setMortageDetail()" id="propertyPrice" type="hidden" min="3167.975" max="253438" value="126719.00"> </div> </li> <li class="mb-3 pb-3"> <div class="emi-title text-muted line-height-default">Pago inicial</div> <div class="font-weight-bold"> <label id="lblBankDownPayment" for="bankDownpayment">79</label>%
+        
+                        <input class="form-control py-0" oninput="setMortageDetail()" id="bankDownpayment" type="range" min="1" max="100" value="10"> </div> </li> <li class="row gutter-5 mb-2"> <div class="col-6"> <div class="emi-title text-muted line-height-default">Año fijo</div> <div class="odd-pjt-dtls"> <input class="form-control" oninput="setMortageDetail()" id="termYear" type="text" value="30"> </div> </div> <div class="col-6"> <div class="emi-title text-muted line-height-default">Interés (porcentaje)</div> <div class="odd-pjt-dtls"> <input class="form-control" readonly="" oninput="setMortageDetail()" id="annualInterestPer" type="text" value="7"> </div> </div> </li> <li class="clearfix mt-5"> </li> </ul> </div>
+                    <div class="container "> 
+
+                        <div class="Bank">
+                            <form action="#">
+                                <label for="Agencias">Agencias</label>
+                                <select name="Agencias" id="Agencias">
+                                <option value="BANHPROVI">BANHPROVI</option>
+                                <option value="PROPIOS">PROPIOS</option>
+                                <option value="RAP">RAP</option>
+                                </select>
+                             </form>
+                        </div>
+                    <div class="calculator">
+                        <h2>Calculadora de Cuotas</h2> 
+                        <form id="loanCalculator" method="POST">
+                            <label for="price">Precio:</label>
+                            <input type="number" id="price" name="price" value="126719" required>
+                    
+                            <label for="initial_payment">Pago inicial (%):</label>
+                            <input type="number" id="initial_payment" name="initial_payment" value="10" required>
+                    
+                            <label for="years">Año fijo:</label>
+                            <input type="number" id="years" name="years" value="30" required>
+                    
+                            <label for="interest_rate">Interés (porcentaje):</label>
+                            <input type="number" id="interest_rate" name="interest_rate" value="7" required>
+                    
+                            <input type="submit" value="Calcular" name="calculate">
+                        </form>
+                    
+                        <?php if ($_SERVER["REQUEST_METHOD"] == "POST") : 
+                            $price = $_POST['price'];
+                            $initial_payment = $_POST['initial_payment'];
+                            $years = $_POST['years'];
+                            $interest_rate = $_POST['interest_rate'];
+                    
+                            $down_payment = ($initial_payment / 100) * $price;
+                            $loan_amount = $price - $down_payment;
+                            $monthly_interest = ($interest_rate / 100) / 12;
+                            $number_of_payments = $years * 12;
+                    
+                            // Fórmula de amortización
+                            $monthly_payment = ($loan_amount * $monthly_interest * pow(1 + $monthly_interest, $number_of_payments)) / (pow(1 + $monthly_interest, $number_of_payments) - 1);
+                        ?>
+                        <div class="result">
+                            <h3>Pago mensual: $<?php echo number_format($monthly_payment, 2); ?></h3>
+                            <p>Pago inicial: $<?php echo number_format($down_payment, 2); ?></p>
+                            <p>Monto a financiar: $<?php echo number_format($loan_amount, 2); ?></p>
+                        </div>
+                        <?php endif; ?>
+                    </div>
+
+                    </div> 
+            </div>
+    </div>   
+<section>
+</body>
+</html>
